@@ -6,6 +6,6 @@ The initial cell population consists of healthy cells.
 
 The code is written in C and takes two command line parameters: initial number of cells and number of generations.
 
-A "Frequency.txt" file is derived from the C-code. 
+A "Frequency.txt" and a "Frequency_mutations.txt" file are derived from the C-code. 
 
-Plots of "Frequency.txt" file are derived from python code.
+Plots of txt files are derived from the corresponding python codes.
