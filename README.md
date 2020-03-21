@@ -11,7 +11,7 @@ A "Frequency.txt" and a "Frequency_mutations.txt" file are derived from the C-co
 Plots of txt files are derived from the corresponding python codes.
 
 
-# Όσον αφορά το αρχείο pop_sim_interactions_with_gauss_weights.c:
+Όσον αφορά το αρχείο pop_sim_interactions_with_gauss_weights.c
 
 1) Eβαλα βαρη σε καθε θεση απο τις 64 απο την γκαουσιανη κατανομη ( κανονικη) γτ συμφωνα με τον νομο των μεγαλων αριθμων ολα τεινουν ν ακολουθουν κανονικη κατανομη και αυτο ισχυει και για βιολογικα συστηματα.
 
