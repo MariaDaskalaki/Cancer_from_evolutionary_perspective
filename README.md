@@ -40,3 +40,5 @@ Plots of txt files are derived from the corresponding python codes.
 13) Kαι τοτε ναι θα διατηρουσα και τ αρνητικα βαρη και εντελει ολα τα fitness scores θα επαιρναν τιμες απο το 0 και πανω αλλα εντελει η διαφορα ( που αυτη ουσιαστικα μας ενδιαφερει για το selection) θα παραμεινει ιδια.
 
 14) και ετσι δημιουργησα το norm_new_weight_position_array καθε στοιχειο του οποιου ειναι το new_weight_position_array-minimum_element_of_new_weight_position_array. ( weight_selection_position1,find_min)
+
+Να σημειωθεί ότι όλα τα txt και png αρχεία έχουν παραχθεί από τον κώδικα pop_sim_interactions_with_gauss_weights.c καθώς θεωρώ ότι μέχρι στιγμής αυτός ειναι ο σωστότερος κώδικας.
