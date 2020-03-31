@@ -18,35 +18,22 @@ With the functions unsigned int countSetBits, void setbits_positions and int* in
 
 The final attempt for finding a ftiness function was to give gravity and "mutation significancy" in certain positions of the genome. The number of positions that matter is random. Each genome position is controlled by a "fit_factor" based again on bitwise operations. The scores are given in the function typ fitfactors_func which returns the total "fit_factor_score", a bitwise number which represents the positions that matter. This number will serve as control in the function void com_fitness_func2, in order to check whether we have mutation in position that matters or not, consistently whether we have SMALL fitness (1.0) or LARGER fitness (described above).
 
-Όσον αφορά το αρχείο pop_sim_interactions_with_gauss_weights.c
+As far as the interactions between genome positions are concerned:
 
-1) Eβαλα βαρη σε καθε θεση απο τις 64 απο την γκαουσιανη κατανομη ( κανονικη) γτ συμφωνα με τον νομο των μεγαλων αριθμων ολα τεινουν ν ακολουθουν κανονικη κατανομη και αυτο ισχυει και για βιολογικα συστηματα.
-
-2) Eτσι εφτιαξα το weight_position_array. (weight_position_array_func)
-
-3) Αλλά με αυτο θεωρειτει η καθε θεση ανεξαρτητη ( δλδ δεν επηρεαζεται η μια απο την αλλη), απλό γραμμικό μοντέλο.
-
-4) Εφοσον ειναι απο κανονικη κατανομη αυτα τα βαρη εχουν και θετικες και αρνητικες τιμες γτ ηθελα να πιασω και το ενδεχομενο μια θεση να επηρεαζει αρνητικα την αλλη.
-
-5) Μετα εφτιαξα το new_weight_position_array το οποιο καθε στοιχειο του βγαινει σαν συνδυασμος 2* το αντιστοιχο βαρος + το αθροισμα ολων των προηγουμενων βαρων και ολων των επομενων. (weight_selection_position1, sum_array))
-
-6) Άρα καθε θεση πια επηρεαζεται περισσοτερο απο τον εαυτο της ( λογικο) γι αυτο και ο συντελεστης 2* αλλα και απ ολες τις προηγουμενες και απ ολες τις επομενες.
-
-7) Άρα εχουμε παει σε πολυμεταβλητο γραμμικο μοντελο.
-
-8) Αυτα τωρα τα νεα σκορ θα ειναι τα fitness scores.
-
-9) Ωστοσο λογω της κανονικης κατανομης θα προκυψουν και αρνητικα βαρη αρα και αρνητικα scores....και αυτο ειναι θεμα γτ το selection δεν μπορει να λειτουργησει με αρνητικα fitnesses, μόνο με θετικα γτ ουσιαστικα fitness ειναι η ικανοτητα να δωσεις παιδια....βασικα ειναι μια πιθανοτητα να δωσεις παιδια....αρα δεν μπορει να ειναι αρνητικη μονο μεγαλυτερη ή ιση του 0 και επισης η δινεις παιδια μεγαλυτερο απο 0 η δε δινεις 0.
-
-10) Άρα γι αυτο μου εκανε abort. Άρα το selection λειτουργουσε σωστα.
-
-11) Η μια εκδοχη ηταν ν αφαιρεσω τ αρνητικα βαρη αλλά δεν ήθελα γτ ήθελα και η δεύτερη εκδοχή ήταν  οπου βρισκω fitness <0  με μια if να το θετω 0, όμως σε αυτό υπήρχε το θέμα ότι οταν το small fitness το βαζω 1 για τις περιοχες που δεν μετρανε τοσο πολυ θα βγει μικροτερο απο το 1 οποτε εντελει θα εκγαθιδτυθουν περιοχες που δεν μετράνε.
-
-12) Μετά από πολύ ψάξιμο βρήκα ότι το roulette wheel selection algorithm λειτουργεί και για αρνητικά fitness scores εφόσον πρώτα κανονικοποιηθούν όλα τα fitnesses.
-
-13) Kαι τοτε ναι θα διατηρουσα και τ αρνητικα βαρη και εντελει ολα τα fitness scores θα επαιρναν τιμες απο το 0 και πανω αλλα εντελει η διαφορα ( που αυτη ουσιαστικα μας ενδιαφερει για το selection) θα παραμεινει ιδια.
-
-14) και ετσι δημιουργησα το norm_new_weight_position_array καθε στοιχειο του οποιου ειναι το new_weight_position_array-minimum_element_of_new_weight_position_array. ( weight_selection_position1,find_min)
+1) Each genome position out of 64 is evalueated with either positive or negative number "weight" taken from gaussian distribution according to the law of great numbers, to which biological systems obey. (float* weight_position_array_func). 
+2) As a result we have weight_position_array. (weight_position_array_func)
+3) If we do not proceed futher each position is considered independet, which means we have no interactions between them (simple linear model).
+4) With negative weights we take into account the negative interactions between positions. 
+5) Each element of  new_weight_position_array is derived from the formula/equation 2*weight[i]+sum of the weights of all previous and next elements.
+6) As a result, each position is affected mostly by itself (thats why coefficient 2) and from all previous and next positions. 
+7) So now, we have multivariate linear model. 
+8) These new scores will be the initial fitness scores.(new_weight_position_array)
+9) However, due to the choice of gaussian distribution negative ftiness scores will arise. As fitness we define the probability of giving offsprings, so negative fitness scores are not possible. We accept values only >=0.
+10) Thats why we had segemetation fault in our first attempt.
+11) The first thought was to remove the negative "weights" but it didnt seem right and the next was to replae fitness values <0 with equal to 0 using if. If I would do this my LARGER fitness would always be less than my SMALL fitness=1.0 for positions that do not matter. So, in the end there would be fixation of positions that do not matter.
+12) After a lot of search I found that roulette wheel selection algorithm keeps working for negative fitnesses after normalization of all fitness scores.
+13) In this way, we could keep the negative weights and the final fitness scores would have positive values without changing the difference between them (which is important for selection).
+14) So the norm_new_weight_position_array was created, each element of whichis derives from new_weight_position_array-minimum_element_of_new_weight_position_array. ( weight_selection_position1,find_min)
 
 In function void com_fitness_func2 each individual of each generation is evaluated with a certain fitness score given as the sum of the weights of its positions that have been mutated.
 
