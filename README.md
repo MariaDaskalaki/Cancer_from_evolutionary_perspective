@@ -16,6 +16,8 @@ Mutations happen randomly in any random individual(cell) of the population in an
 
 With the functions unsigned int countSetBits, void setbits_positions and int* individual_setbits_positions we get respectively the number of total setbits(1s) for each individual(cell) and comulatively for each generation, so both inherited and new mutations are found, the positions that have been mutated for each generation and the mutated positions for each individual of each generation. 
 
+The final attempt for finding a ftiness function was to give gravity and "mutation significancy" in certain positions of the genome. The number of positions that matter is random. Each genome position is controlled by a "fit_factor" based again on bitwise operations. The scores are given in the function typ fitfactors_func which returns the total "fit_factor_score", a bitwise number which represents the positions that matter. This number will serve as control in the function void com_fitness_func2, in order to check whether we have mutation in position that matters or not, consistently whether we have SMALL fitness (1.0) or LARGER fitness (described above).
+
 
 
 Όσον αφορά το αρχείο pop_sim_interactions_with_gauss_weights.c
