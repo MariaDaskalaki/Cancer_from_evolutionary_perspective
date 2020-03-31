@@ -10,6 +10,13 @@ A "Frequency.txt" and a "Frequency_mutations.txt" file are derived from the C-co
 
 Plots of txt files are derived from the corresponding python codes.
 
+The number of mutations for each generation is a random number from binomial distribution, inside the "pool" of total number of cells for the generation * genome_positions(intsize=64) with mutation rate mu=10^-4. The mutation rate of normal cells is between 10^-8 to 10^-6, while the mutation rate of cancer cells is obviously higher. (int binomial)
+
+Mutations happen randomly in any random individual(cell) of the population in any random position. In code the mutation is represented by a "magic" number mask as the right-shift operator of 1 in the position of mutation, procedure based on bitwise operations. (int mutate)
+
+With the functions unsigned int countSetBits, void setbits_positions and int* individual_setbits_positions we get respectively the number of total setbits(1s) for each individual(cell) and comulatively for each generation, so both inherited and new mutations are found, the positions that have been mutated for each generation and the mutated positions for each individual of each generation. 
+
+
 
 Όσον αφορά το αρχείο pop_sim_interactions_with_gauss_weights.c
 
