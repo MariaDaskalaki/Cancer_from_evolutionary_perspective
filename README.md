@@ -71,6 +71,7 @@ Main function consists of the following parts:
  3) At the end of generations loop the function void fixed_positions prints the number of positions==mutations that have been fixed and the number of position==mutations that fave been fixed from those that matter.
 
 
+The two main codes are pop_sim_interactions_with_gauss_weights.c AND pop_sim_branching.c
 
 
-Να σημειωθεί ότι όλα τα txt και png αρχεία έχουν παραχθεί από τον κώδικα pop_sim_interactions_with_gauss_weights.c καθώς θεωρώ ότι μέχρι στιγμής αυτός ειναι ο σωστότερος κώδικας.
+
