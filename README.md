@@ -6,7 +6,7 @@ The initial cell population consists of healthy cells.
 
 The code is written in C and takes two command line parameters: initial number of cells and number of generations.
 
-A "Frequency.txt" and a "Frequency_mutations.txt" file are derived from the C-code. 
+A "Frequency.txt" , a "Frequency_mutations.txt" and a "Population_size.txt" file are derived from the C-code. 
 
 Plots of txt files are derived from the corresponding python codes.
 
@@ -72,6 +72,8 @@ Main function consists of the following parts:
 
 
 The two main codes are pop_sim_interactions_with_gauss_weights.c AND pop_sim_branching.c
+The runs are for 100 intilial population and 1500 generations.
+The population reaches up to 100000 (for example in Gompertz_model).
 
 
 
