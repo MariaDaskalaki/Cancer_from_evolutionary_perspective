@@ -74,6 +74,7 @@ Main function consists of the following parts:
 The two main codes are pop_sim_interactions_with_gauss_weights.c AND pop_sim_branching.c
 The runs are for 100 intilial population and 1500 generations.
 The population reaches up to 100000 (for example in Gompertz_model).
+As the populations size increases the fixation becomes more difficult even if the mutation rate is interrupted after 300 generations.
 
 
 
