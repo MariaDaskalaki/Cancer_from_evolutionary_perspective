@@ -122,7 +122,18 @@ where pi(t) is called the evolutionary probability of Cell(i) at discrete time t
       po is the fitness of Cell(i) at discrete time t
       ΔV(t) and ΔVmax are the ideal increment and the probable maximum increment in the volume of the tumor simulated by the Gompertz model CA at discrete time t.
       
-      ΔV(t)=V
+      ΔV(t)=V(t+To)-V(t)=AVoToexp(-Bt)exp(A/B(1-exp(-Bt)))
+      
+      ΔVmax=constant= Gompertz capacity
+      
+10) Rules Explanation:
+The abnormal cell (Si(t)=1) will give abnormal ( 0--->1 but not 1---->0)
+The healthy cell can probably give abnormal
+If we have a healthy cell and a neighborhood of healthy cells then it can become abnormal with probability proportional to its fitness.
+If we have a healthy cell and a neighborhhod of abnormal cells then it will become abnormal with probability propotrional to two times of its fitness.
+If we have a healthy cell and a neighborhood of one healthy and one abnormal cell then it will become abnormal with probability proporional to its fitness and its available space according to Gompertz capacity.
+
+11) In conclusion, in this implementation we have taken into account the genome position interactions and the cell- to cell interactions, resulting in modelling the invasion of tumorous cells into a healthy tissue.
 
 
 
