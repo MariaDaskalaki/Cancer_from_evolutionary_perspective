@@ -80,9 +80,47 @@ POP_SIM_CA2: Implementing Gompertz model with one-dimensional cellular automata
 
 1) A one dimensional cellular automaton is proposed for implementing the Gompertz model to formulate tumor growth dynamics, which is called Gompertz CA.
 
-2) First a discrete model is derived from standard Gompertz model. Then, stohastically evolutionary rules for the Gompertz CA are developped based on fitness and the discrete Gompertz model. The Gopertz CA is therefore randomized by the stohastically evolutionary rules, so that it can be represented with a stohastic process or a stohastic differential equation.
+2) First a discrete model is derived from standard Gompertz model. Then, stohastically evolutionary rules for the Gompertz CA are developped based on fitness (genome-position dependent) and the discrete Gompertz model. The Gopertz CA is therefore randomized by the stohastically evolutionary rules, so that it can be represented with a stohastic process or a stohastic differential equation.
 
 3) A growing tumor is regarded as a self-organized complex evolutionary system. Tumors, in terms of complex systems, can be analogous to cellular automata and tumor cells to automaton cells.
+
+4) The standard conitnious Gompertz model:
+The Gompertz model is the best-known mathematical equation for modeling tumor growth:
+
+V(t)=Voexp(A/B(1-exp(-Bt), V(t=0)=Vo
+
+5) The discrete Gompertz model:
+
+dV(t)/dt=AVoexp(-Bt)exp(A/B(1-exp(-Bt))
+
+Let t--->0 (small enough) then 
+
+dV(t)/dt=(V(T+to)-V(t))/To, where t now is a discrete time, t=kTo (k=1,2,...) and To is the discrete time interval.
+
+So, V((k+1)To)=V(kTo)+AVoToexp(A/B(1-exp(-BkTo))), discrete Gompertz model (undelies the Gompertz CA as the one of the two evolutionary stohastic rules).
+
+6) The Compertz CA is constructed with a one dimensional cellular automaton:
+                  TGM=<t,Cells,CellSpace,Neighbors,Rules>
+   The Gompertz CA defines its cell neighborhood according to the Moore neighborhood: Ngh(i)={Cell(i-1), Cell(i+1)}.
+   The cell neighborhood is a field of evolutionary rules that regulates the states of Cell(i)
+   
+7) Gompertz CA cells are divided into normal cells and abnormal(tumorous cells), which are represented with different states of Gompertz CA cells: Si(t) in {0,1}, where 0 indicates that cell(i) is normal at discrete time t and 1 indicates an abnormal Gompertz CA cell (tumorous).
+
+8) The evolutionary rules of Gompertz CA:
+The evolution of a given cell depends on the state of the two neighbors and the fitness of cell(i). A normal CA cell probably at discrete time t probably evolves into a tumorous CA cell at the next time t+1.
+
+The state of any Gompertz CA cell is not reversible: 0 can become 1 but 1 can not bacome 0. Gompertz CA cells take ecolutionary computing simoultaneously. At time t=0, the state if any Gompertz CA cell expept those that become parents ( so increased fitness) is zero.
+
+9) Rules: 
+
+Si(t+To)=si(t), if si(t)=1 or pi(t)<=P and si(t)+1, otherwise
+
+pi(t)=po, if si-1(t)=0 and si+1(t)=0 and 2po if si-1(t)=1 and si+1(t)=1 and po(1-ΔV(t)/ΔVmax), otherwise
+
+where pi(t) is called the evolutionary probability of Cell(i) at discrete time t
+      P is the probable threshold belonging to [0,1] and generated with a uniform distribution (probability function)
+      po is the fitness of Cell(i) at discrete time t
+      ΔV(t) and ΔVmax are the ideal increment and the probable maximum increment in the volume of the tumor simulated by the Gompertz model CA at discrete time t.
 
 
 
