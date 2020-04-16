@@ -121,6 +121,8 @@ where pi(t) is called the evolutionary probability of Cell(i) at discrete time t
       P is the probable threshold belonging to [0,1] and generated with a uniform distribution (probability function)
       po is the fitness of Cell(i) at discrete time t
       ΔV(t) and ΔVmax are the ideal increment and the probable maximum increment in the volume of the tumor simulated by the Gompertz model CA at discrete time t.
+      
+      ΔV(t)=V
 
 
 
