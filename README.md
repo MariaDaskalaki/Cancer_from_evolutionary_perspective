@@ -76,5 +76,13 @@ The runs are for 100 intilial population and 1500 generations.
 The population reaches up to 100000 (for example in Gompertz_model).
 As the populations size increases the fixation becomes more difficult even if the mutation rate is interrupted after 300 generations.
 
+POP_SIM_CA2: Implementing Gompertz model with one-dimensional cellular automata
+
+1) A one dimensional cellular automaton is proposed for implementing the Gompertz model to formulate tumor growth dynamics, which is called Gompertz CA.
+
+2) First a discrete model is derived from standard Gompertz model. Then, stohastically evolutionary rules for the Gompertz CA are developped based on fitness and the discrete Gompertz model. The Gopertz CA is therefore randomized by the stohastically evolutionary rules, so that it can be represented with a stohastic process or a stohastic differential equation.
+
+3) A growing tumor is regarded as a self-organized complex evolutionary system. Tumors, in terms of complex systems, can be analogous to cellular automata and tumor cells to automaton cells.
+
 
 
