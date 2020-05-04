@@ -139,7 +139,7 @@ If we have a healthy cell and a neighborhood of one healthy and one abnormal cel
 
 13)If a cell is neutral (undergone 0 mutations) with individuals_condition=0 ( neutrality) it means that its fitness value  depends only on its site. If a cell has undeergone mutations in beneficial position ( non neutral/mutant) with individuals_condition=1 then its fitness value is the sum of fitnesses of the positions of mutations and the fitness of its site. 
 
-14) In conclusion, in this implementation we have taken into account the genome position interactions,   the cell- to cell interactions, resulting in modelling the invasion of tumorous cells into a healthy tissue and the environmnet -to- cell interactions resulting in delaying of fixation time (as we have a low connectivity graph implementation)  in comparison with the space free Gompertz model.
+14) In conclusion, in this implementation we have taken into account the genome position interactions,   the cell- to cell interactions, resulting in modelling the invasion of tumorous cells into a healthy tissue and the environmnet -to- cell interactions resulting in delaying of fixation time (as we have a low connectivity graph implementation)  in comparison with the space free Gompertz.
 
 
 
