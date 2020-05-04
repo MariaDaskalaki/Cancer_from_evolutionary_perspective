@@ -141,5 +141,8 @@ If we have a healthy cell and a neighborhood of one healthy and one abnormal cel
 
 14. In conclusion, in this implementation we have taken into account the genome position interactions,   the cell- to cell interactions, resulting in modelling the invasion of tumorous cells into a healthy tissue and the environmnet -to- cell interactions resulting in delaying of fixation time (as we have a low connectivity graph implementation)  in comparison with the space free Gompertz.
 
+15. Derived .txt files: Frequencies_CA.txt ( genotypes:frequencies), Frequencies_CA_mutant.txt(mutant genotypes:frequencies),
+Frequencies_mutations_CA.txt(all genotypes mutations:frequencies), Frequencies_mutations_CA_mutant.txt(mutant genotypes mutations:frequencies), Number of mutants.txt (Generation '\t' Number of mutants).
+
 
 
