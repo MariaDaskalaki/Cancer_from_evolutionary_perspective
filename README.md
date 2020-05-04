@@ -115,7 +115,7 @@ The state of any Gompertz CA cell is not reversible: 0 can become 1 but 1 can no
 
 Si(t+To)=si(t), if si(t)=1 or pi(t)<=P and si(t)+1, otherwise
 
-pi(t)=po, if si-1(t)=0 and si+1(t)=0 and 2po if si-1(t)=1 and si+1(t)=1 and po(1-ΔV(t)/ΔVmax), otherwise
+pi(t)=po, if si-1(t)=0 and si+1(t)=0 and individuals_condition=1(see 13) else pi(t)=0, AND 2po if si-1(t)=1 and si+1(t)=1, AND po(1-ΔV(t)/ΔVmax), otherwise
 
 where pi(t) is called the evolutionary probability of Cell(i) at discrete time t
       P is the probable threshold belonging to [0,1] and generated with a uniform distribution (probability function)
@@ -133,7 +133,13 @@ If we have a healthy cell and a neighborhood of healthy cells then it can become
 If we have a healthy cell and a neighborhhod of abnormal cells then it will become abnormal with probability propotrional to two times of its fitness.
 If we have a healthy cell and a neighborhood of one healthy and one abnormal cell then it will become abnormal with probability proporional to its fitness and its available space according to Gompertz capacity.
 
-11) In conclusion, in this implementation we have taken into account the genome position interactions and the cell- to cell interactions, resulting in modelling the invasion of tumorous cells into a healthy tissue.
+11)In order to take into account the spatial heterogeneity due to cell-environment interactions we have placed the cells in a 1D array of size N (cur_index_array), so now each offspring has a certain position close to its parent position. In order to find the position of each offspring we have sorted the offsprings array according to the parent index array. (typ* sorting_1).
+
+12)The spatial heterogeneity is implied by different fitness values according to site. As we get closer to the centre of the array fitness values decrease in order to show the environmental stress due to low oxygen ( hypoxia) or overpopulation ( necrosis), the opposite happens as we get closer to the edges of the array. We used  values from bimodal distribution from a linear function decreasing for the first half of the array and increasing for the other half. The maximun of the function is 10 and the minimum is 1 (double* fitness_site_func). As a result each individual has a fitness according to its position(fitness_individuals_site_array).
+
+13)If a cell is neutral (undergone 0 mutations) with individuals_condition=0 ( neutrality) it means that its fitness value  depends only on its site. If a cell has undeergone mutations in beneficial position ( non neutral/mutant) with individuals_condition=1 then its fitness value is the sum of fitnesses of the positions of mutations and the fitness of its site. 
+
+14) In conclusion, in this implementation we have taken into account the genome position interactions,   the cell- to cell interactions, resulting in modelling the invasion of tumorous cells into a healthy tissue and the environmnet -to- cell interactions resulting in delaying of fixation time (as we have a low connectivity graph implementation)  in comparison with the space free Gompertz model.
 
 
 
