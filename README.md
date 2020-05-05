@@ -67,15 +67,16 @@ The selection_func also returns the growth_rate of each generation as the number
 
 void print_genome_without , int print_genome_with are for printing each genotype as a binary string, with the help of char * bitfunc.
 
-There have been two implementations based on two different cancer evolution approaches:
+There have been three implementations based on two different cancer evolution approaches(space-free models and space_model):
 1) The Wright-Fisher model for non constant population size with 4 different cancer growth population models:
   population_array[i]=exponential_linear(initialN,i,growth_rate,2); // for 10000 exp until 3 generation.
   population_array[i]=generalized_logistic(initialN,i,(double)pow((double)10,(double)4),growth_rate,0.25); //capacity~10^12 check paper Estimating tumor growth rates in vivo, for the parameters.
-  population_array[i]=Gompertz_model(initialN,i,growth_rate,gsl_ran_lognormal(r,-2.9,0.71)); // check paper Estimating tumor growth rates in vivo, for parameters.
+  population_array[i]=Gompertz_model(initialN,i,growth_rate,gsl_ran_lognormal(r,-2.9,0.71)); // check paper Estimating tumor growth rates in vivo, for parameters.(space-free model)
   population_array[i]=von_bertalanffy(initialN,i,growth_rate,gsl_ran_lognormal(r,-2.9,0.71));
  For each population model there is a threshold of 100000 cells for each generation.
- 2) The branching process for stohastic non constant population size based on Poisson distribution:
+ 2) The branching process for stohastic non constant population size based on Poisson distribution(space-free model):
   int * population_change_via_branching(gsl_rng* r, int initialN, int generations, double lambda, double ChangingFactor)
+ 3) Cellular automata(space model) with cell to cell interactions and spatial fitness heterogeneity.
 
 Main function consists of the following parts:
 1) Construction of population array based on certain population model
