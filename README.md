@@ -6,7 +6,17 @@ The initial cell population consists of healthy cells.
 
 The code is written in C and takes two command line parameters: initial number of cells and number of generations.
 
-A "Frequency.txt" , a "Frequency_mutations.txt" and a "Population_size.txt" file are derived from the C-code. 
+For the implementation pop_sim_interactions_with_gauss_weights.c: 
+  1) pop_sim_libraries.h must be at the current directory
+  2) gcc -o pop_sim_interactions_with_gauss_weights pop_sim_interactions_with_gauss_weughts.c -g -lgsl -lgslcblas -lm
+  3) ./pop_sim_interactions_with_gauss_weights <number of cells> <numberof generations>
+  
+For the implementation pop_sim_CA.c:
+  1) pop_sim_libraries_CA.h must be at the current directory
+  2) gcc -o pop_sim_CA pop_sim_CA.c -g -lgsl -lgslcblas -lm
+  3) ./pop_sim_CA <number of cells> <number of generations>
+
+ From pop_sim_interactions_with_gauss_weights.c a "Frequency.txt" , a "Frequency_mutations.txt" and a "Population_size.txt" file are derived from the C-code. 
 
 Plots of txt files are derived from the corresponding python codes.
 
@@ -76,7 +86,7 @@ The runs are for 100 intilial population and 1500 generations.
 The population reaches up to 100000 (for example in Gompertz_model).
 As the populations size increases the fixation becomes more difficult even if the mutation rate is interrupted after 300 generations.
 
-POP_SIM_CA2: Implementing Gompertz model with one-dimensional cellular automata
+POP_SIM_CA: Implementing Gompertz model with one-dimensional cellular automata
 
 1) A one dimensional cellular automaton is proposed for implementing the Gompertz model to formulate tumor growth dynamics, which is called Gompertz CA.
 
@@ -143,6 +153,8 @@ If we have a healthy cell and a neighborhood of one healthy and one abnormal cel
 
 15. Derived .txt files: Frequencies_CA.txt ( genotypes:frequencies), Frequencies_CA_mutant.txt(mutant genotypes:frequencies),
 Frequencies_mutations_CA.txt(all genotypes mutations:frequencies), Frequencies_mutations_CA_mutant.txt(mutant genotypes mutations:frequencies), Number of mutants.txt (Generation '\t' Number of mutants).
+
+Both of the implementations are in the directory Comparison.
 
 
 
