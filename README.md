@@ -22,6 +22,11 @@ For the implementation pop_sim_CA.c:
   1) pop_sim_libraries.h must be at the current directory
   2) gcc -o pop_sim_branching pop_sim_branching.c -g -lgsl -lgslcblas -lm
   3) ./pop_sim_branching <number of cells> <number of generations>
+ 
+ For the implementation test_maria_test.c:
+  1) pop_sim_libraries.h must be at the current directory
+  2) gcc -o test_maria_test test_maria_test.c -g -lgsl -lgslcblas -lm
+  3) ./test_maria_test -N <> -gens <> -<linear> -<linear_time_ind> -<deterministic> -<non_herited> -<non_branching> -seed <>
   
 
  From pop_sim_interactions_with_gauss_weights.c a "Frequencies.txt" , a "Frequencies_mutations.txt" and a "Population_size.txt" file are derived from the C-code. 
@@ -54,8 +59,9 @@ As far as the interactions between genome positions are concerned:
 12) After a lot of search I found that roulette wheel selection algorithm keeps working for negative fitnesses after normalization of all fitness scores.
 13) In this way, we could keep the negative weights and the final fitness scores would have positive values without changing the difference between them (which is important for selection).
 14) So the norm_new_weight_position_array was created, each element of whichis derives from new_weight_position_array-minimum_element_of_new_weight_position_array. ( weight_selection_position1,find_min)
+15) In function void com_fitness_func2 each individual of each generation is evaluated with a certain fitness score given as the sum of the weights of its positions that have been mutated.
 
-In function void com_fitness_func2 each individual of each generation is evaluated with a certain fitness score given as the sum of the weights of its positions that have been mutated.
+In order to compare the significancy of different weight evaluation for each position, simulations with each position having the same weight value,were performed. For this purpose in both functions weight_position_array_func and weight_selection_position1 the created arrays weight_position_array1 and norm_new_weight_position_array are filled with value 1.
 
 For each generation the kids are identical to their parents become parents of the next generation, based on the idea of the identical division of the cell cycle. The probability for an individual to become parent is proportional to its fitness.
 In function void selection_func we have implemeted the Rhoulette wheel selection algorithm: 
@@ -164,7 +170,5 @@ If we have a healthy cell and a neighborhood of one healthy and one abnormal cel
 
 15. Derived .txt files: Frequencies_CA.txt ( genotypes:frequencies), Frequencies_CA_mutant.txt(mutant genotypes:frequencies),
 Frequencies_mutations_CA.txt(all genotypes mutations:frequencies), Frequencies_mutations_CA_mutant.txt(mutant genotypes mutations:frequencies), Number of mutants.txt (Generation '\t' Number of mutants).
-
-
 
 
