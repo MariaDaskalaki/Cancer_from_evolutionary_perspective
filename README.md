@@ -26,7 +26,7 @@ For the implementation pop_sim_CA.c:
  For the implementation test_maria_test.c:
   1) pop_sim_libraries.h must be at the current directory
   2) gcc -o test_maria_test test_maria_test.c -g -lgsl -lgslcblas -lm
-  3) ./test_maria_test -N <> -gens <> -<linear> -<linear_time_ind> -<deterministic> -<non_herited> -<non_branching> -seed <>
+  3) ./test_maria_test -N <> -gens <>  -<linear>   -<linear_time_ind> -<deterministic>  -<non_herited>  -<non_branching>  -seed <>
   
 
  From pop_sim_interactions_with_gauss_weights.c a "Frequencies.txt" , a "Frequencies_mutations.txt" and a "Population_size.txt" file are derived from the C-code. 
