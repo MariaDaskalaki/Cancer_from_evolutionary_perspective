@@ -44,7 +44,7 @@ With the functions unsigned int countSetBits, void setbits_positions and int* in
 
 The final attempt for finding a ftiness function was to give gravity and "mutation significancy" in certain positions of the genome. The number of positions that matter is random. Each genome position is controlled by a "fit_factor" based again on bitwise operations. The scores are given in the function typ fitfactors_func which returns the total "fit_factor_score", a bitwise number which represents the positions that matter. This number will serve as control in the function void com_fitness_func2, in order to check whether we have mutation in position that matters or not, consistently whether we have SMALL fitness (1.0) or LARGER fitness (described above).
 
-**As far as the interactions between genome positions are concerned:
+****As far as the interactions between genome positions are concerned:
 
 1) Each genome position out of 64 is evalueated with either positive or negative number "weight" taken from gaussian distribution according to the law of great numbers, to which biological systems obey. (float* weight_position_array_func). 
 2) As a result we have weight_position_array. (weight_position_array_func)
@@ -62,7 +62,7 @@ The final attempt for finding a ftiness function was to give gravity and "mutati
 14) So the norm_new_weight_position_array was created, each element of whichis derives from new_weight_position_array-minimum_element_of_new_weight_position_array. ( weight_selection_position1,find_min)
 15) In function void com_fitness_func2 each individual of each generation is evaluated with a certain fitness score given as the sum of the weights of its positions that have been mutated.
 
-In order to compare the significancy of different weight evaluation for each position, simulations with each position having the same weight value,were performed. For this purpose in both functions weight_position_array_func and weight_selection_position1 the created arrays weight_position_array1 and norm_new_weight_position_array are filled with value 1. **
+In order to compare the significancy of different weight evaluation for each position, simulations with each position having the same weight value,were performed. For this purpose in both functions weight_position_array_func and weight_selection_position1 the created arrays weight_position_array1 and norm_new_weight_position_array are filled with value 1. ****
 
 For each generation the kids are identical to their parents become parents of the next generation, based on the idea of the identical division of the cell cycle. The probability for an individual to become parent is proportional to its fitness.
 In function void selection_func we have implemeted the Rhoulette wheel selection algorithm: 
