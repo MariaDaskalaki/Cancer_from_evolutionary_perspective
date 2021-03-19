@@ -5,24 +5,8 @@ Forward time simulations of cancer cells in discrete time of generations, based 
 
 The initial cell population consists of healthy cells.
 
-The code is written in C and takes two command line parameters: initial number of cells and number of generations.
+The code is written in C and takes two command line parameters: initial number of cells, number of generations, fitness function, neighboring interactions model, cacner model, state model, population size fluctuation, seed.
 
-All the implementations are in the directory Github_comparison.
-
-For the implementation pop_sim_interactions_with_gauss_weights.c: 
-  1) pop_sim_libraries.h must be at the current directory
-  2) gcc -o pop_sim_interactions_with_gauss_weights pop_sim_interactions_with_gauss_weughts.c -g -lgsl -lgslcblas -lm
-  3) ./pop_sim_interactions_with_gauss_weights <number of cells> <numberof generations>
-  
-For the implementation pop_sim_CA.c:
-  1) pop_sim_libraries_CA.h must be at the current directory
-  2) gcc -o pop_sim_CA pop_sim_CA.c -g -lgsl -lgslcblas -lm
-  3) ./pop_sim_CA <number of cells> <number of generations>
-  
-  For the implementation pop_sim_branching.c:
-  1) pop_sim_libraries.h must be at the current directory
-  2) gcc -o pop_sim_branching pop_sim_branching.c -g -lgsl -lgslcblas -lm
-  3) ./pop_sim_branching <number of cells> <number of generations>
  
 ** **For the implementation test_maria_test.c:
   
@@ -30,12 +14,6 @@ For the implementation pop_sim_CA.c:
   2) gcc -o test_maria_test test_maria_test.c -g -lgsl -lgslcblas -lm
   3) ./test_maria_test -N <> -gens <> -<linear>   -<linear_time_ind> -<deterministic>  -<non_herited>  -<non_branching>  -seed <> **
   **
-
- From pop_sim_interactions_with_gauss_weights.c a "Frequencies.txt" , a "Frequencies_mutations.txt" and a "Population_size.txt" file are derived from the C-code. 
- 
- From pop_sim_branching.c a "Frequencies_branching.txt", and a "Frequencies_mutations.txt" are derived and plotted.
-
-Plots of txt files are derived from the corresponding python codes.
 
 The number of mutations for each generation is a random number from binomial distribution, inside the "pool" of total number of cells for the generation * genome_positions(intsize=64) with mutation rate mu=10^-4. The mutation rate of normal cells is between 10^-8 to 10^-6, while the mutation rate of cancer cells is obviously higher. (int binomial)
 
@@ -100,12 +78,9 @@ Main function consists of the following parts:
  3) At the end of generations loop the function void fixed_positions prints the number of positions==mutations that have been fixed and the number of position==mutations that fave been fixed from those that matter.
 
 
-The two main codes are pop_sim_interactions_with_gauss_weights.c AND pop_sim_branching.c
-The runs are for 100 intilial population and 1500 generations.
-The population reaches up to 100000 (for example in Gompertz_model).
 As the populations size increases the fixation becomes more difficult even if the mutation rate is interrupted after 300 generations.
 
-POP_SIM_CA: Implementing Gompertz model with one-dimensional cellular automata
+Simulation: Implementing Gompertz model with one-dimensional cellular automata
 
 1) A one dimensional cellular automaton is proposed for implementing the Gompertz model to formulate tumor growth dynamics, which is called Gompertz CA.
 
