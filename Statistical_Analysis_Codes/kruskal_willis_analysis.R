@@ -1,0 +1,61 @@
+################ Code for analyzing the statistical_analysis.txt file with fixation times of each fitness site model ###################
+
+library(reshape2)
+library(ggplot2)
+library(fitdistrplus)
+library(moments)
+library(car)
+library(reshape2)
+library(data.table)
+library(rcompanion)
+
+setwd("/home/maria/Diplomatiki_parousiasi/statistical_analysis_new")
+
+data<-read.csv(file="statistical_analysis.txt", sep='\t', header=TRUE)
+head(data)
+
+par(mfrow=c(4,1))
+par(mfrow=c(1,4))
+titles<-c("Linear_model", "Beta_model", "Constant_model","Sin_model")
+
+for (col in 1:ncol(data)){
+  hist(data[,col], main=substitute(paste('Histogram of ', a), list(a=titles[col])), xlab="Generations")
+}
+qqnorm(data$linear_model, pch = 1, frame = FALSE, main=" QQplot Linear_model") # qqplots for normality testing
+qqline(data$linear_model, col = "steelblue", lwd = 2)
+
+qqnorm(data$beta_model, pch = 1, frame = FALSE, main="QQplot Beta_model")
+qqline(data$beta_model, col = "steelblue", lwd = 2)
+
+qqnorm(data$constant_model, pch = 1, frame = FALSE, main="QQplot Constant_model")
+qqline(data$constant_model, col = "steelblue", lwd = 2)
+
+qqnorm(data$sin_model, pch = 1, frame = FALSE, main="QQplot Sin_model")
+qqline(data$sin_model, col = "steelblue", lwd = 2)
+
+linear_density<-density(data$linear_model) # density plots for normality testing
+plot(linear_density, xlab="Generations")
+
+beta_density<-density(data$beta_model)
+plot(beta_density, xlab="Generations")
+
+constant_density<-density(data$constant_model)
+plot(constant_density, xlab="Generations")
+
+sin_density<-density(data$sin_model)
+plot(sin_density, xlab="Generations")
+
+shapiro.test(data$linear_model) # shapiro test for normality
+shapiro.test(data$beta_model)
+shapiro.test(data$constant_model) ###### not normal
+shapiro.test(data$sin_model) ####### not normal
+
+####################################################
+
+data_anova<-read.csv(file='statistical_analysis_anova.txt', sep='\t', header=TRUE)
+head(data_anova)
+
+kruskal.test(Time~Model, data=data_anova) # non parametrinc kruskal willis test for hypothesis testing
+pairwise.wilcox.test(data_anova$Time, data_anova$Model,
+                     p.adjust.method = "BH") # wilcoxon pairwise post-hoc test
+
