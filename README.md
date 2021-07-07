@@ -11,8 +11,8 @@ The code is written in C and takes two command line parameters: initial number o
 ** **For the implementation test_maria_test.c:
   
   1) pop_sim_libraries.h must be at the current directory
-  2) gcc -o test_maria_test test_maria_test.c -g -lgsl -lgslcblas -lm
-  3) ./test_maria_test -N <> -gens <> -linear -linear_time_ind -deterministic -non_herited -non_branching -seed <>
+  2) gcc -o pop_sim pop_sim.c -g -lgsl -lgslcblas -lm
+  3) ./pop_sim -N <> -gens <> -linear/beta/constant - fitness_value of constant/alter -linear_time_ind/linear_time_ind/gom_time_dep/no_genotype_effect/no_neighbors_effect -deterministic/stochastic -non_herited/inherited -non_branching/branching -seed <>
   **
 
 The number of mutations for each generation is a random number from binomial distribution, inside the "pool" of total number of cells for the generation * genome_positions(intsize=64) with mutation rate mu=10^-4. The mutation rate of normal cells is between 10^-8 to 10^-6, while the mutation rate of cancer cells is obviously higher. (int binomial)
